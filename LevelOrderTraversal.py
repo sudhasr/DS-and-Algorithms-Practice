@@ -20,7 +20,10 @@ return its level order traversal as:
 # 1. Create a queue (useful here because of its FIFO property) and enque the root into it (only root element is present at 1st level)
 # 2. Until the queue is not empty, we calculate size of the queue(size will be equal to number of nodes at each level), process the elements one by one for that size
 # 3. First append it to level list, check if the node being processed has a left and right child, if it has, then push them to the end of queue		
-# 3. After processing each level, add the temp list to the result list. 
+# 4. After processing each level, add the temp list to the result list. 
+
+#Time Complexity: O(N) as we are processing every node of the tree
+#Space Compelxity: O(k), where k is the max number of nodes at every level in the queue, O(N) if we consider the result list
 
 
 # Definition for a binary tree node.
