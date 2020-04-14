@@ -20,7 +20,7 @@ Explanation:
 # 2. At each level, add the last element of the queue to the result list
 
 #Time Complexity: O(N) as we are processing every node of the tree
-#Space Compelxity: O(N) max of number of nodes at every level
+#Space Compelxity: O(k), where k is the max number of nodes at every level
 
 # Definition for a binary tree node.
 # class TreeNode:
