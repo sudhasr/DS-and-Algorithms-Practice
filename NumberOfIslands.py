@@ -12,6 +12,9 @@ Input:
 Output: 1
 
 """
+
+# Note: In both the approaches we are mutating the given input grid ( Ask the interviewer if it is permitted). Otherwise, create a visited array.
+
 """
 Approach1: BFS iterative approach using queue
 1. Traverse the grid and add the coordinate whose has value if land '1' into a queue and increase count by 1. Mark that coordinate as visited by changing its value to '0'.
