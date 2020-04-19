@@ -36,42 +36,44 @@ class Solution:
         str_stack = []
         curr_num = 0
         curr_str = ''
-        
         for c in s:
-            # Case 1: Process the digit
+            # Case 1: if it is a digit
             if c.isdigit():
-                curr_num = curr_num*10 + (ord(c) - ord('0'))
+                curr_num = curr_num*10 + (ord(c)-ord('0'))
             
-            # Case 2: Open bracket
+            # Case 2: If it is a '['
             elif c == '[':
                 num_stack.append(curr_num)
                 str_stack.append(curr_str)
                 curr_num = 0
                 curr_str = ''
             
-            # Case 3: Process string
+            # Case 3: If it is an alphabet
             elif c.isalpha():
                 curr_str += c
             
-            # Case 4: Close bracket
+            # Case 4: If it a ']'
             else:
-                # if c == ']':
                 times = num_stack.pop()
                 new_str = ''
-                #char = str_stack.pop()
-                while times>0:
-                    new_str += curr_str
-                    times -= 1
-                curr_str = str_stack.pop()
-                curr_str += new_str
+                # If else condition to pass those test cases without a k but string enclosed within[]. Ex. [ab]4[cd]
+                if times>0:
+                    """We can avoid this multi line while loop in Python by adding following code
+                    while times>0:
+                        new_str += curr_str
+                        times -= 1"""
+                    new_str = curr_str*times# Avoiding while loop here
+                    curr_str = str_stack.pop()
+                    curr_str += new_str                 
+                else:
+                    curr_str += new_str# To preserve the previous string
         return curr_str
 		
 		
 """
 Approach2: Using one stack
 1. Follow same steps as Approach1, but instead of two create a single stack to store both num and alphabet
-2. Here order of pushing intot the stack matters. I want to pop digit first, process the curr_str that many times and only then
-	append processed str to the previous_str. This makes sense to push curr_str first and then curr_num into the stack
+2. Push curr_str and curr_num as tuple into the stack. While popping store in correct respective variables according to order of tuple 
 3. Rest if the steos are the same
 """
 #Time Complexity: O(N) where N is length of the 'output string'
@@ -89,11 +91,7 @@ class Solution:
             
             # Case 2: If it is a '['
             elif c == '[':
-                # Here order of pushing inside the stack matters
-                # First push current string and then the current number, so that when popped,
-                # the number comes first for prcessing the curr_str of that time
-                stack.append(curr_str)
-                stack.append(curr_num)
+                stack.append((curr_str, curr_num))
                 curr_num = 0
                 curr_str = ''
             
@@ -103,13 +101,12 @@ class Solution:
             
             # Case 4: If it a ']'
             else:
-                times = stack.pop()
+                prev, times = stack.pop()
                 new_str = ''
                 while times>0:
                     new_str += curr_str
                     times -= 1
-                curr_str = stack.pop()
-                curr_str += new_str
+                curr_str = prev + new_str
         return curr_str
 
 """
@@ -134,7 +131,7 @@ class Solution:
                 curr_num = 0
                 curr_str = ''
             
-            # Case 3: If it is an alphabet or a space
+            # Case 3: If it is an alphabet
             elif c.isalpha() or c.isspace():
                 curr_str += c
             
@@ -142,9 +139,13 @@ class Solution:
             else:
                 times = num_stack.pop()
                 new_str = ''
-                while times>0:
-                    new_str += curr_str
-                    times -= 1
-                curr_str = str_stack.pop()
-                curr_str += new_str
+                if times>0:# If else condition to pass those test cases without a k but string enclosed within[]. Ex. [ab]4[cd]
+                    """while times>0:
+                        new_str += curr_str
+                        times -= 1"""
+					new_str = curr_str*times
+                    curr_str = str_stack.pop()
+                    curr_str += new_str
+                else:
+                    curr_str += new_str# To preserve the previous string
         return curr_str
