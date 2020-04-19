@@ -64,7 +64,7 @@ Approach1: DFS recursiver approach
 6. When whole grid is processed, return count.
 """
 # Time Complexity - O(n x m) as we are traversing and checking every coordinate once
-# Space Complexity - O(m x n) if we consider recursive stack and worst case if all the values are '1'
+# Space Complexity - O(1) without considering recursive stack and O(m x n) if we consider recursive stack and worst case if all the values are '1'
 
 # Global scope declaration
 # Directions array for ease of neighbor traversal
