@@ -1,3 +1,4 @@
+# 102. Binary Tree Level Order Traversal
 """
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
@@ -69,6 +70,8 @@ Approach2: DFS recursive approach
 	result[depth] will give that level list, where we can append new node value.
 
 """
+#Time Complexity: O(N) as we are processing every node of the tree
+#Space Compelxity: O(k), where k is the maxDepth
 
 		
 # Definition for a binary tree node.
@@ -77,7 +80,6 @@ Approach2: DFS recursive approach
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
 
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
