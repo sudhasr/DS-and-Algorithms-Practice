@@ -49,3 +49,44 @@ class Solution:
                 if node.right:
                     q.append(node.right)
         return result
+
+# Approach1: DFS- Recursive approach
+# 1. Have a depth variable and compare it with siz eof result array
+# 2. Add values to the result only if that level is processed of rthe first time, meaning, len(result) == depth
+# 3. Dont do anything when len(result) > depth. It means we have already processed left mpst node of the level
+
+#Time Complexity: O(N) as we are processing every node of the tree
+#Space Compelxity: O(k), where k is the maxDepth
+
+		
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+# DFS
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        # Edge Case
+        if root == None:
+            return []
+        
+        result = []
+        # DFS recursive function
+        self.__dfs(root, 0, result)
+        return result
+           
+    def __dfs(self, node, depth, result):
+        # Base Case
+        if node == None:
+            return
+        # Comparing depth avlue with size of result array
+        if len(result) == depth:
+            result.append(node.val)
+            
+        if node.left:
+            self.__dfs(node.left, depth+1, result)
+        if node.right:
+            self.__dfs(node.right, depth+1, result)
