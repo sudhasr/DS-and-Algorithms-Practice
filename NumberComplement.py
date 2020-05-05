@@ -48,8 +48,8 @@ Approach1: With XOR
 2. Find 2**bits-1 will give the largest value for that number of bits 
 3. Find XOR of maximum value and the number, it will give the complement
 """
-# Time Complexity -
-# Space Complexity - 
+# Time Complexity - O(2*bits), for finding the bits and again for doing bit-wise XOR operation
+# Space Complexity - O(1)
 
 class Solution:
     def findComplement(self, num: int) -> int:
