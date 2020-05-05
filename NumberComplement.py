@@ -43,7 +43,7 @@ class Solution:
         return (2**bits)-1-num
 		
 """
-Approach1: With XOR
+Approach2: With XOR
 1. Find the number of bits of given number using division method
 2. Find 2**bits-1 will give the largest value for that number of bits 
 3. Find XOR of maximum value and the number, it will give the complement
